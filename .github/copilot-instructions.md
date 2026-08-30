@@ -1,16 +1,33 @@
 # Open Proficiency TypeScript
 
-## Code Requirements
+## Design
 
-- Keep code simple. Prefer flat design. Do not add abstraction/complexity until needed.
-- Install libraries and frameworks for common tasks.
-- Do not couple the module/library (verified-proficiency) with the CLI (verified-proficiency-cli).
-  They must be completely independent. They are deployed independently.
+- Keep code simple and flat. Do not add an abstraction until more than one
+  caller needs it.
+- Prefer platform APIs and established packages over custom implementations.
+- Keep the public API focused and intuitive.
+- Let consumers import only what they need.
+- Support ESM on Node.js 20+ and modern browsers.
 
-## Proficiency System
+## Model Boundary
 
-Topics and Topic Lists - see `topics.instructions.md` for more details.
-Interpretations - see `interpretations.instructions.md` for more details.
-Transcripts - see `transcripts.instructions.md` for more details.
+- Treat the Open Proficiency Model `v0.1.0` schemas as the runtime source of
+  truth.
+- Use the tag and resolved commit recorded in `schemas/upstream.json`.
+- Use camelCase properties and `Date` objects in default TypeScript types.
+- Keep schema types, validation, and conversion private.
+- Keep generated files machine-owned; change the schema or generator instead.
 
-You can learn more about the proficiency system from https://github.com/openproficiency/model
+Model documentation is at https://github.com/openproficiency/model.
+
+## Boundaries
+
+Do not add I/O, cryptography, dependency resolution, domain algorithms,
+authoring tools, or rendering.
+
+## Publishing
+
+Run `npm run check` and `npm pack --dry-run` before publishing.
+
+Publish manually, never from a pull request. Verify the packed package in
+`temp-typescript-app` before release.
