@@ -27,7 +27,6 @@ authoring tools, or rendering.
 
 ## Publishing
 
-Run `npm run check` and `npm pack --dry-run` before publishing.
-
-Publish manually, never from a pull request. Verify the packed package in
-`temp-typescript-app` before release.
+Follow `docs/publishing.md`, the single release runbook. Never run
+`npm publish` locally or from a pull request. Verify the packed package in
+`temp-typescript-app` before merging the release.

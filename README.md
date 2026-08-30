@@ -81,7 +81,7 @@ import { Model } from "@openproficiency/typescript";
 Model.OPEN_PROFICIENCY_MODEL_VERSION; // 'v0.1.0'
 ```
 
-## How to develop
+## Contributing
 
 - [Develop locally](docs/how-to-develop.md)
-- [Publish the package](docs/publishing.md)
+- [Publish a release](docs/publishing.md) (maintainers)
