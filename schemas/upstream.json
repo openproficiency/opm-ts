@@ -1,0 +1,15 @@
+{
+  "repository": "https://github.com/openproficiency/model",
+  "tag": "v0.1.0",
+  "commit": "c95c14d5f25dd771223f7320d67601e1293a50c9",
+  "retrievedAt": "2026-08-30T00:00:00Z",
+  "sha256": {
+    "score-interpretation-list.schema.json": "d8e3743006da4d7d17435ede60396044659004cc5d2cd35390cb1064006cd4c5",
+    "score-interpretation.schema.json": "a4d93e9557501e1a174662f5be1f0c6d1dd6b389169fe40f06039eabaad80c56",
+    "topic-list.schema.json": "67d9f530929aa43f58abe01138886e992298a92f2f46361f34e7e9da653ffab0",
+    "topic.schema.json": "27b8ccf857d017c107c3c468f9e3480f871225cd3f6d53d269df2ef808417a83",
+    "transcript-entry.schema.json": "6d115b416ce5735543fc3efa5a7ac51b4651968e7474600d7adea99982f882ab",
+    "transcript-entry-verification.schema.json": "08eb2bf932f931db6c44818d09d89e75cad1fbfe1c407b67c8b24c9646680816",
+    "transcript.schema.json": "b0b4fca22ccf3f7ee1a9a6053b1e6c22da2bfa2742c1b6204c3fd0a5c2d1f4d7"
+  }
+}
