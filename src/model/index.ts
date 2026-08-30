@@ -1,0 +1,4 @@
+export {
+  OPEN_PROFICIENCY_MODEL_COMMIT,
+  OPEN_PROFICIENCY_MODEL_VERSION,
+} from './version.js';

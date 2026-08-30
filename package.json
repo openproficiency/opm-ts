@@ -1,0 +1,95 @@
+{
+  "name": "@openproficiency/typescript",
+  "version": "0.0.2",
+  "description": "TypeScript types and primitives for the Open Proficiency Model.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./topic": {
+      "types": "./dist/topic/index.d.ts",
+      "import": "./dist/topic/index.js"
+    },
+    "./topic-list": {
+      "types": "./dist/topic-list/index.d.ts",
+      "import": "./dist/topic-list/index.js"
+    },
+    "./score-interpretation": {
+      "types": "./dist/score-interpretation/index.d.ts",
+      "import": "./dist/score-interpretation/index.js"
+    },
+    "./score-interpretation-list": {
+      "types": "./dist/score-interpretation-list/index.d.ts",
+      "import": "./dist/score-interpretation-list/index.js"
+    },
+    "./transcript": {
+      "types": "./dist/transcript/index.d.ts",
+      "import": "./dist/transcript/index.js"
+    },
+    "./transcript-entry": {
+      "types": "./dist/transcript-entry/index.d.ts",
+      "import": "./dist/transcript-entry/index.js"
+    },
+    "./model": {
+      "types": "./dist/model/index.d.ts",
+      "import": "./dist/model/index.js"
+    },
+    "./schemas/topic.json": "./schemas/topic.schema.json",
+    "./schemas/topic-list.json": "./schemas/topic-list.schema.json",
+    "./schemas/score-interpretation.json": "./schemas/score-interpretation.schema.json",
+    "./schemas/score-interpretation-list.json": "./schemas/score-interpretation-list.schema.json",
+    "./schemas/transcript-entry.json": "./schemas/transcript-entry.schema.json",
+    "./schemas/transcript.json": "./schemas/transcript.schema.json",
+    "./schemas/transcript-entry-verification.json": "./schemas/transcript-entry-verification.schema.json"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.schema.d.ts",
+    "!dist/**/*.schema.js",
+    "schemas",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openproficiency/typescript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/openproficiency/typescript/issues"
+  },
+  "homepage": "https://github.com/openproficiency/typescript#readme",
+  "scripts": {
+    "generate-types": "node scripts/generate-types-from-schemas.mjs",
+    "check:generated-types": "node scripts/generate-types-from-schemas.mjs --check",
+    "typecheck": "tsc --noEmit && tsc --project tsconfig.test.json",
+    "build": "tsc",
+    "test": "tsx --test tests/**/*.test.ts",
+    "check": "npm run check:generated-types && npm run typecheck && npm test && npm run build",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run check"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "semver": "^7.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/semver": "^7.7.1",
+    "json-schema-to-typescript": "^16.0.0",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
