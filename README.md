@@ -32,7 +32,7 @@ const topicList = TopicList.parse({
   "topics": {},
 });
 
-console.log(`${topicList.owner}/${topicList.name}`); // example.com/math
+console.log(TopicList.fullyQualifiedName(topicList)); // example.com/math@0.1.0
 ```
 
 Create typed data directly and serialize it when you need the model's JSON

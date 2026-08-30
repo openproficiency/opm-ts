@@ -11,4 +11,9 @@ export type {
 // PUBLIC FUNCTIONS
 //
 
-export { entries, parse, serialize } from './score-interpretation-list.js';
+export {
+  entries,
+  fullyQualifiedName,
+  parse,
+  serialize,
+} from './score-interpretation-list.js';

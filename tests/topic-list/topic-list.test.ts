@@ -178,3 +178,28 @@ describe('TopicList.entries', () => {
     assert.equal('id' in topic, false);
   });
 });
+
+describe('TopicList.fullyQualifiedName', () => {
+  it('returns the owner, name, and version', () => {
+    // Description
+    // Verifies a topic list is identified using the model's qualified format.
+
+    // Arrange
+    const input = {
+      owner: 'example.com',
+      name: 'math',
+      description: 'Basic mathematics.',
+      version: '0.1.0',
+      issuedAt: new Date('2026-01-01T00:00:00Z'),
+      signature: null,
+      signedBy: null,
+      topics: {},
+    } satisfies TopicList.TopicList;
+
+    // Act
+    const actual = TopicList.fullyQualifiedName(input);
+
+    // Assert
+    assert.equal(actual, 'example.com/math@0.1.0');
+  });
+});

@@ -59,6 +59,11 @@ export function entries(
   );
 }
 
+/** Returns the score interpretation list's fully qualified owner/name@version. */
+export function fullyQualifiedName(list: ScoreInterpretationList): string {
+  return `${list.owner}/${list.name}@${list.version}`;
+}
+
 /** Parses unknown model data into a score interpretation list. */
 export function parse(value: unknown): ScoreInterpretationList {
   // Validate and convert the schema data.

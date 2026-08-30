@@ -59,6 +59,7 @@ import {
 | `parse` | Function | Validates unknown topic-list data and returns a `TopicList`. |
 | `serialize` | Function | Converts a `TopicList` to its model representation. |
 | `entries` | Function | Returns topics paired with their map keys. |
+| `fullyQualifiedName` | Function | Returns `owner/name@version` for a topic list. |
 | `parseDependency` | Function | Parses `owner/name@version`; returns `null` when invalid. |
 | `formatDependency` | Function | Formats structured dependency details. |
 | `parseDependencyTopic` | Function | Parses `dependency.topic`; returns `null` when invalid. |
@@ -82,6 +83,7 @@ import {
 | `parse` | Function | Validates unknown interpretation-list data. |
 | `serialize` | Function | Converts an interpretation list to its model representation. |
 | `entries` | Function | Returns interpretations paired with their map keys. |
+| `fullyQualifiedName` | Function | Returns `owner/name@version` for an interpretation list. |
 
 ## `TranscriptEntry`
 

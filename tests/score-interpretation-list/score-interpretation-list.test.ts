@@ -173,3 +173,28 @@ describe('ScoreInterpretationList.entries', () => {
     assert.equal('id' in scoreInterpretation, false);
   });
 });
+
+describe('ScoreInterpretationList.fullyQualifiedName', () => {
+  it('returns the owner, name, and version', () => {
+    // Description
+    // Verifies an interpretation list uses the model's qualified format.
+
+    // Arrange
+    const input = {
+      owner: 'example.com',
+      name: 'math-levels',
+      description: 'Mathematics proficiency levels.',
+      version: '0.1.0',
+      issuedAt: new Date('2026-01-01T00:00:00Z'),
+      signature: null,
+      signedBy: null,
+      scoreInterpretations: {},
+    } satisfies ScoreInterpretationList.ScoreInterpretationList;
+
+    // Act
+    const actual = ScoreInterpretationList.fullyQualifiedName(input);
+
+    // Assert
+    assert.equal(actual, 'example.com/math-levels@0.1.0');
+  });
+});

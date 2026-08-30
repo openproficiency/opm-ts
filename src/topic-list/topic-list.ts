@@ -52,6 +52,11 @@ export function entries(topicList: TopicList): KeyedTopic[] {
   return Object.entries(topicList.topics).map(([id, topic]) => ({ id, topic }));
 }
 
+/** Returns the topic list's fully qualified owner/name@version. */
+export function fullyQualifiedName(topicList: TopicList): string {
+  return `${topicList.owner}/${topicList.name}@${topicList.version}`;
+}
+
 /** Parses unknown model data into a topic list. */
 export function parse(value: unknown): TopicList {
   // Validate and convert the schema data.

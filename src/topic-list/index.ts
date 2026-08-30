@@ -19,4 +19,9 @@ export {
   parseDependency,
   parseDependencyTopic,
 } from './dependencies.js';
-export { entries, parse, serialize } from './topic-list.js';
+export {
+  entries,
+  fullyQualifiedName,
+  parse,
+  serialize,
+} from './topic-list.js';
