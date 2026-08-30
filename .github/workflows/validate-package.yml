@@ -78,7 +78,10 @@ jobs:
           github-token: ${{ github.token }}
           update-comment: true
           additional-message: |
-            The build is now available with name: `${{ steps.package-version.outputs.artifact_name }}`.
+            The build is now available:
+            ```bash
+            gh run download --name '${{ steps.package-version.outputs.artifact_name }}'
+            ```
 
   dry-run-publish:
     needs: build
