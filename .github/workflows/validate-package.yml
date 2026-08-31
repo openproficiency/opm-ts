@@ -1,0 +1,103 @@
+name: Validate package
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    outputs:
+      artifact_name: ${{ steps.package-version.outputs.artifact_name }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install and cache LCOV
+        uses: awalsh128/cache-apt-pkgs-action@v1.6.3
+        with:
+          packages: lcov
+          version: "1.0"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check proficiency types match schemas
+        run: npm run check:generated-types
+
+      - name: Check package type
+        run: npm run typecheck
+
+      - name: Build package
+        run: npm run build
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Measure test coverage
+        run: npm run test:coverage
+
+      - name: Set package version
+        id: package-version
+        run: |
+          PACKAGE_VERSION="$(npm pkg get version | tr -d '"')-pr-${PR_NUMBER}-${COMMIT_SHA}"
+          npm version "$PACKAGE_VERSION" --no-git-tag-version
+          echo "artifact_name=openproficiency-typescript-$PACKAGE_VERSION" >> "$GITHUB_OUTPUT"
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+
+      - name: Pack package
+        run: npm pack --ignore-scripts
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package-version.outputs.artifact_name }}
+          path: "*.tgz"
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Report test coverage
+        uses: zgosalvez/github-actions-report-lcov@v4
+        with:
+          coverage-files: lcov.info
+          github-token: ${{ github.token }}
+          update-comment: true
+          additional-message: |
+            The build is now available:
+            ```bash
+            gh run download --name '${{ steps.package-version.outputs.artifact_name }}'
+            ```
+
+  dry-run-publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Download package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact_name }}
+          path: package
+
+      - name: Dry-run package publish
+        run: npm publish ./package/*.tgz --dry-run --tag pr

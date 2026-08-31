@@ -25,6 +25,23 @@ npm test
 npm run build
 ```
 
+## Run unit tests
+
+Run the unit test suite:
+
+```bash
+npm test
+```
+
+Run the tests and print the coverage report in the terminal:
+
+```bash
+npx tsx --test --experimental-test-coverage tests/**/*.test.ts
+```
+
+The workflow uses `npm run test:coverage` instead, which writes the report to
+`lcov.info` for automated reporting.
+
 ## Generated types
 
 Files named `src/**/*.schema.ts` are generated from the vendored schemas. Do
@@ -104,24 +121,12 @@ fix it upstream rather than silently choosing an interpretation here.
 
 ### Check the result
 
-Run the complete package checks and inspect the publishable files:
+Run the complete package checks:
 
 ```bash
 npm run check
-npm pack --dry-run
 ```
 
-Finally, choose this package's major, minor, or patch version based on changes
-to its public types, validation, and helpers. The package version does not
-need to match the model version.
-
-## Inspect the package
-
-Build and list the files npm would publish:
-
-```bash
-npm pack --dry-run
-```
-
-The package should contain `dist/`, `schemas/`, `LICENSE`, and `README.md`.
-Follow [Publish the package](publishing.md) for the release procedure.
+If the change is ready for release, continue with the
+[publishing runbook](publishing.md). It covers versioning, package inspection,
+PR artifacts, peer-app verification, and publication.
