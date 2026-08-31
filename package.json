@@ -64,12 +64,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openproficiency/typescript.git"
+    "url": "git+https://github.com/openproficiency/opm-ts.git"
   },
   "bugs": {
-    "url": "https://github.com/openproficiency/typescript/issues"
+    "url": "https://github.com/openproficiency/opm-ts/issues"
   },
-  "homepage": "https://github.com/openproficiency/typescript#readme",
+  "homepage": "https://github.com/openproficiency/opm-ts#readme",
   "scripts": {
     "generate-types": "node scripts/generate-types-from-schemas.mjs",
     "check:generated-types": "node scripts/generate-types-from-schemas.mjs --check",
