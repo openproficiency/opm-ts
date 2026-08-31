@@ -82,10 +82,13 @@ which:
 1. installs the locked dependencies and runs the package checks
 2. builds one `.tgz` artifact and retains it for one day
 3. publishes that exact artifact to the public npm registry with provenance
+4. creates a `v<version>` GitHub release with generated notes and the `.tgz`
+   attached
 
 The `publish` job uses the `production` GitHub environment and npm trusted
 publishing. Its `id-token: write` permission supplies the short-lived OIDC
-identity, so no long-lived npm token is stored in GitHub.
+identity, so no long-lived npm token is stored in GitHub. Its `contents: write`
+permission creates the GitHub release.
 
 ## 5. Confirm the release
 
@@ -94,6 +97,7 @@ returns the new version:
 
 ```bash
 npm view @openproficiency/typescript@<version> version
+gh release view v<version>
 ```
 
-The release is complete when that command prints `<version>`.
+The release is complete when npm prints `<version>` and the GitHub release is available.
